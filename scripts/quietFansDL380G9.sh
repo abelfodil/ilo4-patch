@@ -9,7 +9,15 @@ OPT="-o KexAlgorithms=diffie-hellman-group14-sha1,diffie-hellman-group1-sha1 -o 
 sshpass -p $PWD ssh $OPT $USER@$IP 'fan g stop'
 sshpass -p $PWD ssh $OPT $USER@$IP 'fan g start'
 
-for sensor in {01..59}
+# PID based control
+# for sensor in {01..59}
+# do
+#   sshpass -p $PWD ssh $OPT $USER@$IP "fan pid $sensor lo 500"
+# done
+
+# Fixed fan speed
+for fan in {1..6}
 do
-  sshpass -p $PWD ssh $OPT $USER@$IP "fan pid $sensor lo 500"
+  sshpass -p $PWD ssh $OPT $USER@$IP "fan p $fan max 25" # 10%
+  sshpass -p $PWD ssh $OPT $USER@$IP "fan p $fan min 255"
 done
