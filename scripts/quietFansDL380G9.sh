@@ -16,7 +16,7 @@ sshpass -p $PWD ssh $OPT $USER@$IP 'fan g start'
 # done
 
 # Fixed fan speed
-for fan in {1..6}
+for fan in {0..5}
 do
   sshpass -p $PWD ssh $OPT $USER@$IP "fan p $fan max 25" # 10%
   sshpass -p $PWD ssh $OPT $USER@$IP "fan p $fan min 255"
